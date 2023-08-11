@@ -40,8 +40,35 @@
         if (computerChoice === playerChoice) {
             return "Tied!"
         }
-        
+        else if (playerChoice === "rock") {
+            switch (computerChoice) {
+                case "paper":
+                    return "You Lose! Paper beats Rock!"
+                break;
+                case "scissor":
+                    return "You Win! Rock beats Scissors!";
+            }
+        }
+        else if (playerChoice === "scissors") {
+            switch (computerChoice) {
+                case "paper": 
+                    return "You Win! Scissors beats Paper!"
+                break;
+                case "rock":
+                    return "You Lose! Rock beats Scissors!";
+            }
+        }
+        else {
+            switch (computerChoice) {
+                case "rock": 
+                    return "You Win! Paper beats Rock!"
+                break;
+                case "scissors":
+                    return "You Lose! Scissors beats Paper!";
+            }
+        }   
     }
+    console.log(rockPaperScissors());
 </script>
 <body>
     
