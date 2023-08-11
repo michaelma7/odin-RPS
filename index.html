@@ -43,32 +43,47 @@
         else if (playerChoice === "rock") {
             switch (computerChoice) {
                 case "paper":
-                    return "You Lose! Paper beats Rock!"
+                    return "You Lose!"
                 break;
                 case "scissor":
-                    return "You Win! Rock beats Scissors!";
+                    return "You Win!";
             }
         }
         else if (playerChoice === "scissors") {
             switch (computerChoice) {
                 case "paper": 
-                    return "You Win! Scissors beats Paper!"
+                    return "You Win!"
                 break;
                 case "rock":
-                    return "You Lose! Rock beats Scissors!";
+                    return "You Lose!";
             }
         }
         else {
             switch (computerChoice) {
                 case "rock": 
-                    return "You Win! Paper beats Rock!"
+                    return "You Win!"
                 break;
                 case "scissors":
-                    return "You Lose! Scissors beats Paper!";
+                    return "You Lose!";
             }
         }   
     }
-    console.log(rockPaperScissors());
+
+    function game() {
+        let playerScore = 0;
+        let compScore = 0;
+        for(let i=1; i < 6; i++) {
+            let result = rockPaperScissors();
+            if (result === "You Win!") {
+                playerScore++;
+            }
+            else if (result === "You Lose!") {
+                compScore++;
+            }
+            console.log("Score is: " + playerScore + " : " + compScore );
+        }
+    }
+    game();
 </script>
 <body>
     
