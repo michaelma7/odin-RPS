@@ -23,7 +23,13 @@
     }
     function getPlayerChoice () {
         let playerChoice = prompt("Choose your move!", " ");
-        
+        let choiceLower = playerChoice.toLowerCase();
+        if (choiceLower === 'rock' || choiceLower === 'scissors' || choiceLower === 'paper') {
+            return choiceLower;
+        }
+        else {
+            return console.log("Invalid Input");
+        }
     }
     getPlayerChoice();
     function rockPaperScissors () {
