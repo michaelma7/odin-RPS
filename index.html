@@ -21,8 +21,21 @@
                 <span id="round-result">You have not played a game yet!</span>
             </div>
             <div class = 'scoreboard'>
-                <div class="computer-score"></div>
-                <div class="player-score"></div>
+                <div class="player-score-box">
+                    <span>Player</span>
+                    <div id="player-score">
+                        0
+                    </div>
+                </div>
+                <div class="computer-score-box">
+                    <span>Computer</span>
+                    <div id="computer-score">
+                        0
+                    </div>
+                </div>
+                <div id="winner">
+
+                </div>
             </div>            
         </div>
         <div class = 'footer'>
@@ -32,9 +45,11 @@
 </body>
 
 <script>
+    let playerScore = 0;
+    let computerScore = 0;
     function getRndInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min
-    }
+    };
     
     function getComputerChoice () {
         let computerChoice = " ";
@@ -45,9 +60,9 @@
             case 2: computerChoice = "Scissors"
             break;
             case 3: computerChoice = "Paper"
-        }
+        };
         return computerChoice
-    }
+    };
 
     function rockPaperScissors (playerChoice) {
         let computerChoice = getComputerChoice();
@@ -56,32 +71,70 @@
         }
         else if (playerChoice === "Rock") {
             switch (computerChoice) {
-                case "Paper":
-                    return document.getElementById("round-result").textContent = `You Lose! ${computerChoice} beats ${playerChoice}!`;
-                break;
                 case "Scissor":
-                    return document.getElementById("round-result").textContent = `You Win! ${playerChoice} beats ${computerChoice}!`;
-            }
+                    document.getElementById("round-result").textContent = `You Win! ${playerChoice} beats ${computerChoice}!`;
+                    keepScore(1);
+                    return
+                break;
+                case "Paper":
+                    document.getElementById("round-result").textContent = `You Lose! ${computerChoice} beats ${playerChoice}!`;
+                    keepScore(2);
+                    return 
+            };
         }
         else if (playerChoice === "Scissors") {
             switch (computerChoice) {
                 case "Paper": 
-                return document.getElementById("round-result").textContent = `You Win! ${playerChoice} beats ${computerChoice}!`;
+                    document.getElementById("round-result").textContent = `You Win! ${playerChoice} beats ${computerChoice}!`;
+                    keepScore(1);
+                return 
                 break;
                 case "Rock":
-                    return document.getElementById("round-result").textContent = `You Lose! ${computerChoice} beats ${playerChoice}!`;
-            }
+                    document.getElementById("round-result").textContent = `You Lose! ${computerChoice} beats ${playerChoice}!`;
+                    keepScore(2);
+                return 
+            };
         }
-        else {
+        else if (playerChoice === "Paper") {
             switch (computerChoice) {
-                case "Rock": 
-                    return document.getElementById("round-result").textContent = `You Win! ${playerChoice} beats ${computerChoice}!`;
+                case "Rock":
+                    document.getElementById("round-result").textContent = `You Win! ${playerChoice} beats ${computerChoice}!`;
+                    keepScore(1);
+                    return 
                 break;
                 case "Scissors":
-                    return document.getElementById("round-result").textContent = `You Lose! ${computerChoice} beats ${playerChoice}!`;
-            }
+                    document.getElementById("round-result").textContent = `You Lose! ${computerChoice} beats ${playerChoice}!`;
+                    keepScore(2);
+                    return 
+            };
+        }
+        else {
+            console.log("Something went wrong");
         }   
+    };
+
+    function keepScore (result) {
+        if (result === 1) {
+            playerScore++;
+            document.getElementById('player-score').textContent = playerScore;
+            if (playerScore === 5) {
+                document.getElementById('winner').textContent = "You reached 5 wins first!";
+                playerScore = 0;
+                document.getElementById('player-score').textContent = playerScore;
+            }
+        }
+        else if (result === 2) {
+            computerScore++;
+            document.getElementById('computer-score').textContent = computerScore;
+            if (computerScore === 5) {
+                document.getElementById('winner').textContent = "The computer reached 5 wins first!";
+                computerScore = 0;
+                document.getElementById('player-score').textContent = computerScore;
+            }
+        }
+        
     }
+
 
     const choices = document.querySelectorAll('.choice');
     choices.forEach(choice => choice.addEventListener('click', (e) => rockPaperScissors(e.target.id)));
