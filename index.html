@@ -47,9 +47,8 @@
         </div>
         <div class = 'footer'>
             <div class="about">
-                <div class="navlink">
                     <a href="https://github.com/michaelma7">Repos</a>
-                </div>
+                    <a href="https://linkedin.com/in/michael-ma-21a4925a">About me</a>
             </div>
         </div> 
     </div>    
@@ -131,7 +130,9 @@
             if (playerScore === 5) {
                 document.getElementById('winner').textContent = "You reached 5 wins first!";
                 playerScore = 0;
+                computerScore = 0;
                 document.getElementById('player-score').textContent = playerScore;
+                document.getElementById('computer-score').textContent = computerScore;
             }
         }
         else if (result === 2) {
@@ -140,7 +141,9 @@
             if (computerScore === 5) {
                 document.getElementById('winner').textContent = "The computer reached 5 wins first!";
                 computerScore = 0;
-                document.getElementById('player-score').textContent = computerScore;
+                playerScore = 0;
+                document.getElementById('player-score').textContent = playerScore;
+                document.getElementById('computer-score').textContent = computerScore;
             }
         }
         
@@ -148,7 +151,7 @@
 
     const choices = document.querySelectorAll('.choice');
     choices.forEach(choice => choice.addEventListener('click', (e) => rockPaperScissors(e.target.id)));
-    const playAgain = document.querySelector('.winner');
-    winner.addEventListener('')
+    // const playAgain = document.querySelector('.winner');
+    // winner.addEventListener('')
 </script>
 </html>
